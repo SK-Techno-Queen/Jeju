@@ -1,0 +1,12 @@
+.map-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* 위쪽 정렬 */
+    height: 100vh; /* 전체 뷰포트 높이 */
+    background-color: #f0f0f0; /* 배경 색상 */
+}
+
+#map {
+    width: 100%;
+    height: 500px;
+}
