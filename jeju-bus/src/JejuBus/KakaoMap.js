@@ -1,53 +1,72 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import './KakaoMap.css'; // CSS 파일 import
 
 const KakaoMap = () => {
+    const [buses, setBuses] = useState([]); // 버스 데이터를 저장할 상태
+
     useEffect(() => {
+        // 백엔드에서 버스 데이터 가져오기
+        const fetchData = async () => {
+            try {
+                const response = await fetch('http://localhost:8080/bus'); // 백엔드 API 호출
+                const data = await response.json();
+                console.log(data); // 데이터를 확인하기 위한 로그
+                setBuses(data); // 데이터를 상태에 저장
+            } catch (error) {
+                console.error("버스 데이터를 가져오는 데 실패했습니다:", error);
+            }
+        };
+
+        fetchData();
+    }, []);
+
+    useEffect(() => {
+        if (buses.length === 0) return; // 버스 데이터가 없으면 실행하지 않음
+
         const script = document.createElement('script');
         script.src = `https://dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.REACT_APP_KAKAO_API_KEY}&autoload=false`;
         script.async = true;
 
-        // 스크립트가 로드된 후 호출할 함수
         script.onload = () => {
             const { kakao } = window;
 
-            // kakao 객체가 정상적으로 로드되었는지 확인
+            // 카카오맵 API가 제대로 로드되었는지 확인
             if (!kakao || !kakao.maps) {
                 console.error('카카오맵 API가 제대로 로드되지 않았습니다.');
                 return;
             }
 
-            // kakao.maps.load 함수를 사용하여 지도를 초기화
+            // 카카오맵 API 로드 후 실행
             kakao.maps.load(() => {
                 const container = document.getElementById('map');
+                // const firstBus = buses[0]; // 첫 번째 버스를 중심으로 지도 설정
                 const options = {
-                    center: new kakao.maps.LatLng(33.450701, 126.570667),
-                    level: 3,
+                    center: new kakao.maps.LatLng(33.507206, 126.493384), // 첫 번째 버스를 중심으로 지도 설정
+                    level: 8, // 줌 레벨
                 };
 
-                // 지도 객체 생성
-                const map = new kakao.maps.Map(container, options);
+                const map = new kakao.maps.Map(container, options); // 지도 객체 생성
 
-                // 마커를 표시할 위치
-                const markerPosition = new kakao.maps.LatLng(33.450701, 126.570667);
+                // 각 버스에 대해 마커 생성
+                buses.forEach(bus => {
+                    const markerPosition = new kakao.maps.LatLng(bus.localY, bus.localX); // 각 버스의 위도, 경도 사용
+                    const marker = new kakao.maps.Marker({
+                        position: markerPosition,
+                    });
 
-                // 마커 객체 생성
-                const marker = new kakao.maps.Marker({
-                    position: markerPosition,
+                    // 지도에 마커 표시
+                    marker.setMap(map);
                 });
-
-                // 지도에 마커를 표시
-                marker.setMap(map);
             });
         };
 
-        document.head.appendChild(script);
+        document.head.appendChild(script); // 스크립트 로드
 
-        // 클린업: 컴포넌트 언마운트 시 스크립트 제거
+        // 클린업: 컴포넌트가 언마운트 될 때 스크립트 제거
         return () => {
             document.head.removeChild(script);
         };
-    }, []);
+    }, [buses]); // buses 데이터가 변경될 때마다 실행
 
     return (
         <div className="map-container">
