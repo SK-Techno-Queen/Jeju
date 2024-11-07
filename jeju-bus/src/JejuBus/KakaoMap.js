@@ -41,8 +41,8 @@ const KakaoMap = () => {
                 const container = document.getElementById('map');
                 // const firstBus = buses[0]; // 첫 번째 버스를 중심으로 지도 설정
                 const options = {
-                    center: new kakao.maps.LatLng(33.507206, 126.493384), // 첫 번째 버스를 중심으로 지도 설정
-                    level: 8, // 줌 레벨
+                    center: new kakao.maps.LatLng(33.36167, 126.52917), // 한라산 국립공원을 중심으로 지도 설정
+                    level: 9, // 줌 레벨
                 };
 
                 const map = new kakao.maps.Map(container, options); // 지도 객체 생성
