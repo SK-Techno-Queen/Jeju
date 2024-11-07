@@ -1,6 +1,7 @@
 import React from "react";
 import KakaoMap from "./JejuBus/KakaoMap";
 
+/*asdf*/
 const App = () => {
   return (
     <div>
