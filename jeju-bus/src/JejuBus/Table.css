@@ -1,0 +1,52 @@
+/* 데이터 패널 스타일 */
+.data-panel {
+    padding: 20px; /* 패널 내부 여백 */
+    background: #f5f5f5; /* 배경색 */
+    height: 20vh; /* 테이블의 높이를 화면의 80%로 설정 */
+    overflow-y: auto; /* 세로 스크롤을 자동으로 추가 */
+    scrollbar-width: thin; /* Firefox에서 스크롤바 두께를 얇게 설정 */
+}
+
+/* Chrome, Safari에서 스크롤바 스타일을 설정 */
+.data-panel::-webkit-scrollbar {
+    width: 8px; /* 스크롤바의 너비를 8px로 설정 */
+}
+
+/* 스크롤바의 손잡이 부분 스타일 */
+.data-panel::-webkit-scrollbar-thumb {
+    background-color: #bbb; /* 스크롤바 손잡이 색상 */
+    border-radius: 4px; /* 스크롤바 손잡이 모서리를 둥글게 설정 */
+}
+
+/* 좌표 기록 테이블 스타일 */
+.coordinate-table {
+    width: 100%; /* 테이블의 너비를 100%로 설정 */
+    border-collapse: collapse; /* 테이블의 경계선을 겹치지 않도록 설정 */
+    font-size: 0.9rem; /* 폰트 크기 설정 */
+}
+
+/* 테이블 헤더와 셀에 스타일을 적용 */
+.coordinate-table th, .coordinate-table td {
+    border: 1px solid #ddd; /* 셀에 1px 회색 경계선 추가 */
+    padding: 8px; /* 셀 안쪽 여백 */
+    text-align: left; /* 텍스트 왼쪽 정렬 */
+}
+
+/* 테이블 헤더의 스타일 */
+.coordinate-table th {
+    background-color: #4CAF50; /* 헤더 배경색 설정 */
+    color: white; /* 헤더 글자색을 흰색으로 설정 */
+}
+
+/* 테이블 행이 짝수일 때 배경색을 회색으로 설정 */
+.coordinate-table tr:nth-child(even) {
+    background-color: #f2f2f2; /* 짝수 번째 행에 배경색 설정 */
+}
+
+/* 모바일 화면에서 테이블 스타일 조정 */
+@media (max-width: 600px) {
+    .coordinate-table th, .coordinate-table td {
+        padding: 6px; /* 모바일에서 셀의 여백을 줄임 */
+        font-size: 0.85rem; /* 모바일에서 폰트 크기 줄임 */
+    }
+}

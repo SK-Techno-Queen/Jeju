@@ -15,6 +15,7 @@ const KakaoMap = () => {
       const response = await fetch('http://localhost:8080/bus');
       const data = await response.json();
       setBuses(data); // 응답 데이터를 buses 상태에 저장
+      console.log('버스 데이터:', data); // 버스 데이터 다시 불러올 때마다 콘솔에 출력
     } catch (error) {
       console.error('버스 데이터를 가져오는 데 실패했습니다:', error);
     }
@@ -26,6 +27,7 @@ const KakaoMap = () => {
       const response = await fetch('http://localhost:8080/spot');
       const data = await response.json();
       setSpots(data.items || []); // 응답 데이터를 spots 상태에 저장
+      console.log('관광지 데이터:', data.items || []); // 관광지 데이터는 한 번만 콘솔에 출력
     } catch (error) {
       console.error('관광지 데이터를 가져오는 데 실패했습니다:', error);
     }
