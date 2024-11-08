@@ -190,9 +190,9 @@ const KakaoMap = () => {
               <p><strong>관광지 이름:</strong> {selectedInfo.data.title || '정보 없음'}</p>
               <p><strong>주소:</strong> {selectedInfo.data.roadaddress || '주소 없음'}</p>
               <p><strong>설명:</strong> {selectedInfo.data.introduction || '설명 없음'}</p>
-              <p><strong>전화번호:</strong> {selectedInfo.data.phonenumber || '전화번호 없음'}</p>
-              {selectedInfo.data.img ? (
-                <img src={selectedInfo.data.img} alt="관광지 이미지" />
+              <p><strong>전화번호:</strong> {selectedInfo.data.phoneno || '전화번호 없음'}</p>
+              {selectedInfo.data.repPhoto.photoid.imgpath ? (
+                <img src={selectedInfo.data.repPhoto.photoid.imgpath} alt="관광지 이미지" />
               ) : (
                 <p><strong>이미지:</strong> 이미지 없음</p>
               )}
