@@ -10,3 +10,13 @@
     width: 100%;
     height: 700px;
 }
+
+.custom-infowindow {
+    padding: 5px;
+    white-space: nowrap; /* 텍스트를 한 줄로 유지 */
+    overflow: hidden; /* 넘치는 텍스트를 숨김 */
+    text-overflow: ellipsis; /* 넘치는 텍스트는 '...'으로 표시 */
+    font-size: 14px; /* 폰트 크기 설정 */
+    line-height: 1.4; /* 줄 간격 설정 */
+  }
+  
